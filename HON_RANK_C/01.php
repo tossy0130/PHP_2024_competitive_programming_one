@@ -184,4 +184,257 @@ print($result);
 
 /*
 
+・反復横跳び
+
+入力例1
+4
+55
+57
+55
+52
+
+出力例1
+2
+1
+2
+4
+
+
 */
+
+$N = fgets(STDIN);
+// === 値取得
+$arr_val = [];
+for ($i = 0; $i < $N; $i++) {
+    $arr_val[$i] = trim(fgets(STDIN));
+}
+
+// ================================================= END
+
+/*
+
+ABC 085 A - Already 2018　
+
+*/
+
+$get_str = fgets(STDIN);
+
+// １文ずつ配列へ入れる
+$arr = str_split($get_str);
+
+$set_str = "";
+$idx = 0;
+
+// === 2017/00/00  西暦部分取得
+while (true) {
+
+    if ($arr[$idx] == '/') {
+        break;
+    }
+
+    $set_str .= $arr[$idx];
+    $idx += 1;
+}
+
+// 西暦にプラス 1 をする
+$set_str = $set_str + 1;
+
+$idx = 0;
+while (true) {
+
+    if ($idx <= 3) {
+        $idx += 1;
+        continue;
+    }
+
+    $set_str .= $arr[$idx];
+
+    if ($idx == 9) {
+        break;
+    }
+
+    $idx += 1;
+}
+
+print($set_str);
+
+// ================================================= END
+
+/*
+
+入力例 1
+internationalization
+
+出力例 1
+i18n
+
+----------------
+
+入力例 2
+smiles
+
+出力例 2
+s4s
+
+----------------
+
+*/
+
+$str_02 = trim(fgets(STDIN));
+
+// 文字列の頭
+$str_02_f = $str_02[0];
+//print($str_02_f);
+
+// 文字列の末尾
+$str_02_l = $str_02[-1];
+//print($str_02_l);
+
+// 文字列の長さ
+$arr_02 = str_split($str_02);
+$str_02_len = count($arr_02) - 2;
+//print($str_02_len);
+
+### 出力
+print($str_02_f . $str_02_len . $str_02_l);
+
+// ================================================= END
+
+
+/*
+
+B - Maximum Difference
+
+問題文
+
+N の整数列 A が与えられます。 
+A の（添字の）異なる 2 要素の差の絶対値の最大値を求めてください。
+
+--------------------
+入力例 1
+4
+1 4 6 3
+
+出力例 1
+5
+--------------------
+
+
+*/
+
+$num_03_01 = fgets(STDIN);
+$num_03_02 = fgets(STDIN);
+
+// === 配列へ格納
+$arr_03 = explode(" ", $num_03_02);
+
+$result_03 = 0;
+for ($i = 0; $i < $num_03_01; $i++) {
+
+    for ($j = 0; $j < $num_03_01; $j++) {
+
+        // 計算
+        $tmp_03 = $arr_03[$i] - $arr_03[$j];
+        // abs で絶対値へ変換
+        $tmp_03 = abs($tmp_03);
+        /*
+        print("arr_03 i:::" . $arr_03[$i] . "\n");
+        print("arr_03 j:::" . $arr_03[$j] . "\n");
+    
+        print("tmp_03 :::" . $tmp_03 . "\n");
+        */
+
+        if ($result_03 < $tmp_03) {
+            $result_03 = $tmp_03;
+        }
+    }
+}
+
+print($result_03);
+
+// ================================================= END
+
+/*
+
+B - Palace 
+
+https://atcoder.jp/contests/abc113/tasks/abc113_b
+
+
+入力例 1
+2
+12 5
+1000 2000
+
+出力例 1
+1
+
+-------------------------
+
+入力例 2
+3
+21 -11
+81234 94124 52141
+
+出力例 2
+3
+
+-----------------------------
+
+*/
+
+$num_04 = fgets(STDIN);
+$num_04_02 = fgets(STDIN);
+$num_04_03 = fgets(STDIN);
+
+// 配列へ格納
+$arr_03_01 = explode(" ", $num_04_02);
+
+// 配列へ格納
+$arr_03_02 = explode(" ", $num_04_03);
+
+// === 判定
+$tmp = 0;
+$hantei = $arr_03_01[0]; // 計算式に埋め込む用
+
+$kin = $arr_03_01[1];
+// $kin = abs($kin);
+
+// === 初期の result 値の作成
+$result_tmp = $hantei - $arr_03_02[0] * 0.006;
+$result = $kin - $result_tmp;
+$result = abs($result);
+
+$result_idx = 0;
+
+for ($i = 0; $i < count($arr_03_02); $i++) {
+    // === 計算して値を出す
+    $tmp = $hantei - $arr_03_02[$i] * 0.006;
+
+    // 比較の値から、計算して出した値を引いて
+    $tmp_02 = $kin - $tmp;
+    // 絶対値にする。
+    $tmp_02 = abs($tmp_02);
+
+    /*
+    print("tmp_02:::" . $tmp_02 . "<br>");
+    print("i:::" . $i);
+    */
+
+    // 最小値を更新
+    if ($tmp_02 < $result) {
+        $result = $tmp_02;
+        $result_idx = $i;
+    }
+}
+
+//print($result . "\n");
+print($result_idx + 1);
+
+// ================================================= END
+
+/*
+
+*/
+
+// ================================================= END
